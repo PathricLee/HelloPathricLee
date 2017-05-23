@@ -13,11 +13,27 @@ void read2pipe() {
         std::string word;
         std::vector<std::string> words;
         while(s >> word) {
-            words.push_back(word);
+            std::string::iterator siter = word.begin();
+            bool english = true;
+            for(; siter != word.end(); siter++) {
+                if (*siter >= 'a' and *siter <= 'z') {
+                    
+                }
+                else if (*siter >= 'A' and *siter <= 'Z') {
+                
+                }
+                else {
+                    english = false; 
+                }
+            }
+            if (english) {
+                words.push_back(word);
+            }
         }
-        if (words.size() != 2) {
+        if (words.size() == 2) {
             lprint(words);
         }
+        words.clear();
     }
 }
 
