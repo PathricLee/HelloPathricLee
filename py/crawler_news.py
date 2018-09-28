@@ -19,5 +19,19 @@ def query_baidu_news(keyword):
         title = a.text.strip()
         print('\t'.join([keyword, title]))
 
+def query_toutiao_news(keyword):
+    url = u'https://www.toutiao.com/search/?keyword=' +quote(keyword)
+    driver.get(url)
+    data = driver.page_source
+
+    usoup = BeautifulSoup(data, 'lxml')
+    results = usoup.find_all(class_='link title')
+    print(len(results))
+    for r in results:
+        a = r.find('a')
+        title = r.text.strip()
+        #print('\t'.join([keyword, title]))
+        print(title)
+
 if __name__ == '__main__':
-    query_baidu_news('人物八卦')
+    query_toutiao_news('机构盘点')
